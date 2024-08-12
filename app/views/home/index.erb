@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
-  <h1>Welcome to FOMO, <%= current_user.email %></h1>
+  <h1>Welcome to FOMO, <%= current_user.name %> <%= current_user.last_name %></h1>
+  <%= link_to 'Edit my user', edit_user_registration_path, data: { turbo: false } %>
   <%= link_to 'Sign out', destroy_user_session_path, data: { turbo: false } %>
 <% else %>
   <h1>Welcome to FOMO!</h1>
