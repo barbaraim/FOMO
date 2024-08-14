@@ -18,6 +18,36 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">FOMO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <%= link_to 'Home', root_path, class:"nav-link" %>
+            </li>
+          </ul>
+          <ul>
+            <li class="nav-item dropdown">
+                <% if user_signed_in? %>
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Welcome, <%= current_user.name %>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <%= link_to 'Edit my user', edit_user_registration_path, data: { turbo: false }, class:'dropdown-item' %>
+                    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false }, class:'dropdown-item' %>
+                  </ul>
+                <% else %>
+                  <%= link_to 'Sign in', new_user_session_path, class:"nav-link" %>
+                <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
