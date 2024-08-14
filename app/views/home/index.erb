@@ -1,8 +1,9 @@
+
 <% if user_signed_in? %>
-  <h1>Welcome to FOMO, <%= current_user.name %> <%= current_user.last_name %></h1>
-  <%= link_to 'Edit my user', edit_user_registration_path, data: { turbo: false } %>
-  <%= link_to 'Sign out', destroy_user_session_path, data: { turbo: false } %>
+  <h1>Welcome back, <%= current_user.name %> <%= current_user.last_name %>!</h1>
 <% else %>
-  <h1>Welcome to FOMO!</h1>
+  <h1>Find your crowd!</h1>
+  <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      class="d-block w-100 img-fluid">
   <%= link_to 'Sign in', new_user_session_path %>
 <% end %>
