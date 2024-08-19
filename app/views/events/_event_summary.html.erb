@@ -1,0 +1,14 @@
+<%= link_to event_path(event), class:"text-decoration-none" do %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div id="<%= dom_id event %>">
+        <h3>
+          <%= event.name %>
+        </h3>
+        <p>
+          <%= event.description %>
+        </p>
+      </div>
+    </div>
+  </div>
+<% end %>
