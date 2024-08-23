@@ -14,3 +14,13 @@
  *= require_self
  */
 @import "bootstrap";
+
+
+.form-box{
+  outline: 1px solid #ccc;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin: 0 auto;
+}

@@ -1,3 +1,4 @@
+
 <%= form_with(model: event) do |form| %>
   <% if event.errors.any? %>
     <div style="color: red">
@@ -11,32 +12,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-outline mb-4">
+    <%= form.label :name, style: "display: block", class:"form-label" %>
+    <%= form.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :address, style: "display: block", class:"form-label" %>
+    <%= form.text_field :address, class:"form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :start_date, style: "display: block", class:"form-label" %>
+    <%= form.datetime_field :start_date, class:"form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :end_date, style: "display: block", class:"form-label" %>
+    <%= form.datetime_field :end_date, class:"form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, style: "display: block", class:"form-label" %>
+    <%= form.text_field :description, class:"form-control" %>
   </div>
 
   <div>
-    <%= form.label :address, style: "display: block" %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.datetime_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.datetime_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit :Create, class:"btn btn-outline-primary" %>
   </div>
 <% end %>
