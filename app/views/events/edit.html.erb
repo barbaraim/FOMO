@@ -1,0 +1,14 @@
+<div class="container-xl form-box">
+  <% content_for :title, "Editing event" %>
+
+  <h1>Editing event</h1>
+
+  <%= render "form", event: @event %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this event", @event %>
+  </div>
+
+</div>
