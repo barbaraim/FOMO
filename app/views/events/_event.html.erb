@@ -1,32 +1,30 @@
 <div id="<%= dom_id event %>">
-  <p>
-    <strong>Name:</strong>
+  <div class="d-flex justify-content-end">
+    <p class="badge rounded-pill text-bg-primary mx-2 px-2">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-480q33 0 56.5-23.5T560-560q0-33-23.5-56.5T480-640q-33 0-56.5 23.5T400-560q0 33 23.5 56.5T480-480Zm0 294q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0 106Q319-217 239.5-334.5T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 100-79.5 217.5T480-80Zm0-480Z"/></svg>
+      <%= event.address %>
+    </p>
+    <% if event.end_date < Time.zone.now %>
+      <p class="badge rounded-pill text-bg-danger mx-2 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M480-120q-138 0-240.5-91.5T122-440h82q14 104 92.5 172T480-200q117 0 198.5-81.5T760-480q0-117-81.5-198.5T480-760q-69 0-129 32t-101 88h110v80H120v-240h80v94q51-64 124.5-99T480-840q75 0 140.5 28.5t114 77q48.5 48.5 77 114T840-480q0 75-28.5 140.5t-77 114q-48.5 48.5-114 77T480-120Zm112-192L440-464v-216h80v184l128 128-56 56Z"/></svg>
+        Past Event
+      </p>
+    <% end %>
+    <p class="badge rounded-pill text-bg-primary mx-2 px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>
+        <%= event.start_date %> - <%= event.end_date %>
+      </p>
+  </div>
+  <div class="d-flex align-items-end justify-content-center">
+  <h1>
     <%= event.name %>
+  </h1>
+  <p class="mx-1">
+    by
+    <%= event.user.name %> <%= event.user.last_name %>
   </p>
-
-  <p>
-    <strong>Address:</strong>
-    <%= event.address %>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= event.start_date %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= event.end_date %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
+  </div>
+  <p class="my-3">
     <%= event.description %>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= event.user_id %>
-  </p>
-
 </div>

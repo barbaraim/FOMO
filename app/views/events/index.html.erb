@@ -4,10 +4,11 @@
 
 <h1>Events</h1>
 
+<% if current_user %>
+  <%= link_to "New event", new_event_path, class:"btn btn-outline-primary" %>
+<% end %>
 
-<%= link_to "New event", new_event_path, class:"btn btn-outline-primary" %>
-
-<div id="events_summary" class="my-2">
+<div id="events_summary" class="my-2 d-flex justify-content-evenly">
   <% @events.each do |event| %>
     <%= render partial: "events/event_summary", locals: { event: event } %>
   <% end %>

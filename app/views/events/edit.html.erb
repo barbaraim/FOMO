@@ -1,4 +1,11 @@
 <div class="container-xl form-box">
+  <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Events", events_path %></li>
+      <li class="breadcrumb-item"><%= link_to @event.name, @event %></li>
+      <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>
   <% content_for :title, "Editing event" %>
 
   <h1>Editing event</h1>
@@ -8,7 +15,7 @@
   <br>
 
   <div>
-    <%= link_to "Show this event", @event %>
+    <%= button_to "Destroy this event", @event, method: :delete, class:"btn btn-outline-danger" %>
   </div>
 
 </div>
