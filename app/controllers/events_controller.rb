@@ -5,7 +5,17 @@ class EventsController < ApplicationController
 
   # GET /events or /events.json
   def index
-    @events = Event.all
+    @filter_by_time = filter_index_params[:filter_by_time]
+    case @filter_by_time
+    when "upcoming"
+      @events = Event.upcoming
+    when "past"
+      @events = Event.past
+    when "happening_now"
+      @events = Event.happening_now
+    else
+      @events = Event.now_and_upcoming
+    end
   end
 
   # GET /events/1 or /events/1.json
@@ -74,5 +84,9 @@ class EventsController < ApplicationController
     def authenticate_author!
       flash[:alert] = "You are not authorized to perform this action."
       redirect_to events_url unless @event.user == current_user
+    end
+
+    def filter_index_params
+      params.permit(:filter_by_time)
     end
 end
