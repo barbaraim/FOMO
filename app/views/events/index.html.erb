@@ -8,6 +8,14 @@
   <%= link_to "New event", new_event_path, class:"btn btn-outline-primary" %>
 <% end %>
 
+<%= form_with url: events_path, method: :get do |f| %>
+  <%= f.select :filter_by_time,
+                [['Current and Upcoming', 'all'], ['Past', 'past'], ['Only Upcoming', 'upcoming'], ['Happening Now', 'happening_now']],
+                class:'form-select',
+                selected: @filter_by_time %>
+  <%= f.submit :Filter, class:"btn btn-outline-primary"  %>
+<% end %>
+
 <div id="events_summary" class="my-2 d-flex justify-content-evenly">
   <% @events.each do |event| %>
     <%= render partial: "events/event_summary", locals: { event: event } %>
