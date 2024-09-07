@@ -5,7 +5,7 @@ one:
   address: MyString
   start_date: 2024-08-19 19:04:13
   end_date: 2024-08-19 19:04:13
-  description: MyString
+  description: This description is longer than 10 characters
   user: one
 
 two:
@@ -13,7 +13,7 @@ two:
   address: MyString
   start_date: 2024-08-19 19:04:13
   end_date: 2024-08-19 19:04:13
-  description: MyString
+  description: This description is longer than 10 characters
   user: two
 
 past_event:
@@ -21,7 +21,7 @@ past_event:
   address: MyString
   start_date: 2024-08-19 19:04:13
   end_date: 2024-08-19 19:04:13
-  description: MyString
+  description: This description is longer than 10 characters
   user: one
 
 future_event:
@@ -29,7 +29,7 @@ future_event:
   address: MyString
   start_date: 2100-08-19 19:04:13
   end_date: 2100-08-19 19:04:13
-  description: MyString
+  description: This description is longer than 10 characters
   user: one
 
 happening_now:
@@ -37,5 +37,5 @@ happening_now:
   address: MyString
   start_date: <%= Time.now - 3.day %>
   end_date: <%= Time.now + 3.day %>
-  description: MyString
+  description: This description is longer than 10 characters
   user: one
