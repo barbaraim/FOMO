@@ -10,7 +10,7 @@
 
 <%= form_with url: events_path, method: :get do |f| %>
   <%= f.select :filter_by_time,
-                [['Current and Upcoming', 'all'], ['Past', 'past'], ['Only Upcoming', 'upcoming'], ['Happening Now', 'happening_now']],
+                [['Current and Upcoming', 'all'], ['Past', 'past'], ['Only Upcoming', 'upcoming'], ['Happening Now', 'happening_now'], ['Archived Events', 'archived']],
                 class:'form-select',
                 selected: @filter_by_time %>
   <%= f.submit :Filter, class:"btn btn-outline-primary"  %>

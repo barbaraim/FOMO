@@ -23,6 +23,13 @@
   </div>
   <% end %>
 
+  <% if @event.end_date < Time.now %>
+    <p class="text-danger">As this event has already passed, you can archive it.</p>
+    <div>
+      <%= render "archive_event", event: @event %>
+    </div>
+  <% end %>
+
 </div>
 
 <%= render "delete_modal", event: @event %>
