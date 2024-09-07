@@ -10,12 +10,17 @@
 
   <h1>Editing event</h1>
 
-  <%= render "form", event: @event %>
-
   <br>
 
+  <% if @event.start_date > Date.today %>
   <div>
+    <%= render "form", event: @event %>
     <%= button_to "Destroy this event", @event, method: :delete, class:"btn btn-outline-danger" %>
   </div>
+  <% else %>
+  <div>
+    <p class="text-danger">You can't edit this event because it has already started or has already happened.</p>
+  </div>
+  <% end %>
 
 </div>
