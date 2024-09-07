@@ -15,7 +15,7 @@
   <% if @event.start_date > Date.today %>
   <div>
     <%= render "form", event: @event %>
-    <%= button_to "Destroy this event", @event, method: :delete, class:"btn btn-outline-danger" %>
+    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=".delete-modal">Delete Event</button>
   </div>
   <% else %>
   <div>
@@ -24,3 +24,5 @@
   <% end %>
 
 </div>
+
+<%= render "delete_modal", event: @event %>
