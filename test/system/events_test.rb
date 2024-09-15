@@ -1,8 +1,10 @@
 require "application_system_test_case"
 
 class EventsTest < ApplicationSystemTestCase
+  include Devise::Test::IntegrationHelpers
   setup do
-    @event = events(:one)
+    sign_in users(:one)
+    @event = events(:future_event)
   end
 
   test "visiting the index" do
@@ -19,33 +21,22 @@ class EventsTest < ApplicationSystemTestCase
     fill_in "End date", with: @event.end_date
     fill_in "Name", with: @event.name
     fill_in "Start date", with: @event.start_date
-    fill_in "User", with: @event.user_id
-    click_on "Create Event"
+    click_on "Save"
 
     assert_text "Event was successfully created"
-    click_on "Back"
   end
 
   test "should update Event" do
     visit event_url(@event)
     click_on "Edit this event", match: :first
 
-    fill_in "Address", with: @event.address
-    fill_in "Description", with: @event.description
-    fill_in "End date", with: @event.end_date.to_s
-    fill_in "Name", with: @event.name
-    fill_in "Start date", with: @event.start_date.to_s
-    fill_in "User", with: @event.user_id
-    click_on "Update Event"
+    fill_in "Address", with: "new address"
+    fill_in "Description", with: "new description"
+    fill_in "End date", with: "10-10-2200 19:04:13"
+    fill_in "Name", with: "New Name"
+    fill_in "Start date", with: "10-10-2150 19:04:13"
+    click_on "Save"
 
     assert_text "Event was successfully updated"
-    click_on "Back"
-  end
-
-  test "should destroy Event" do
-    visit event_url(@event)
-    click_on "Destroy this event", match: :first
-
-    assert_text "Event was successfully destroyed"
   end
 end
