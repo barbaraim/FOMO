@@ -13,6 +13,8 @@ class EventsController < ApplicationController
       @events = Event.past
     when "happening_now"
       @events = Event.happening_now
+    when "archived"
+      @events = Event.archived
     else
       @events = Event.now_and_upcoming
     end
@@ -78,7 +80,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:name, :address, :start_date, :end_date, :description)
+      params.require(:event).permit(:name, :address, :start_date, :end_date, :description, :archived)
     end
 
     def authenticate_author!

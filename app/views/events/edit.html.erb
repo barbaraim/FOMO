@@ -10,12 +10,26 @@
 
   <h1>Editing event</h1>
 
-  <%= render "form", event: @event %>
-
   <br>
 
+  <% if @event.start_date > Date.today %>
   <div>
-    <%= button_to "Destroy this event", @event, method: :delete, class:"btn btn-outline-danger" %>
+    <%= render "form", event: @event %>
+    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target=".delete-modal">Delete Event</button>
   </div>
+  <% else %>
+  <div>
+    <p class="text-danger">You can't edit this event because it has already started or has already happened.</p>
+  </div>
+  <% end %>
+
+  <% if @event.end_date < Time.now %>
+    <p class="text-danger">As this event has already passed, you can archive it.</p>
+    <div>
+      <%= render "archive_event", event: @event %>
+    </div>
+  <% end %>
 
 </div>
+
+<%= render "delete_modal", event: @event %>

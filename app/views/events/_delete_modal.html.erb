@@ -1,0 +1,17 @@
+<div class="modal fade delete-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+       <div class="modal-header">
+        <h5 class="modal-title">Erase event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>By doing this action, this event will no longer be available.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <%= button_to "Destroy this event", @event, method: :delete, class:"btn btn-outline-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
