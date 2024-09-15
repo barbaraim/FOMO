@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_07_215903) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_15_225740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_07_215903) do
     t.datetime "updated_at", null: false
     t.boolean "archived", default: false
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.integer "participant_status", default: 0
+    t.boolean "notify", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_participants_on_event_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,4 +55,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_07_215903) do
   end
 
   add_foreign_key "events", "users"
+  add_foreign_key "participants", "events"
+  add_foreign_key "participants", "users"
 end
