@@ -30,7 +30,32 @@
     <%= event.user.name %> <%= event.user.last_name %>
   </p>
   </div>
-  <p class="my-3">
+  <p class="my-3 box">
     <%= event.description %>
   </p>
+
+  <div class="box">
+    <h4>👥 Participants</h4>
+    <div class="d-flex flex-wrap">
+      <div class="col">
+        <h5> ✅ Attending </h5>
+        <% event.participants.attending.each do |participant| %>
+          <div class="d-flex flex-column align-items-center mx-2 box">
+            <p>
+              <%= participant.user.name %> <%= participant.user.last_name %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+      <div class="col">
+        <h5> 🚫 Were attending but cancelled </h5>
+        <% event.participants.declined.each do |participant| %>
+          <div class="d-flex flex-column align-items-center mx-2 box">
+            <p>
+              <%= participant.user.name %> <%= participant.user.last_name %>
+            </p>
+          </div>
+        <% end %>
+      </div>
+  </div>
 </div>

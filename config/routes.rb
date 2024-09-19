@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :events
+  resources :participants
+  get "my_participations", action: :user_index, controller: "participants"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

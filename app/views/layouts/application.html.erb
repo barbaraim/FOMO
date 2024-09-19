@@ -32,6 +32,9 @@
             <li class="nav-item">
               <%= link_to 'All Events', events_path, class:"nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'My Saved Events', my_participations_path, class:"nav-link" %>
+            </li>
           </ul>
           <ul>
             <li class="nav-item dropdown">
@@ -51,8 +54,14 @@
         </div>
       </div>
     </nav>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class='my-2'>
+      <% if flash[:notice] %>
+        <div class="notice alert alert-light mx-2" role><%= notice %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger mx-2"><%= alert %></div>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
