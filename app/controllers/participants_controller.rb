@@ -43,6 +43,10 @@ class ParticipantsController < ApplicationController
     end
   end
 
+  def user_index
+    @my_participations = Participant.where(user_id: current_user.id).preload(:event)
+  end
+
   # def destroy
   #   @participant.destroy!
 
