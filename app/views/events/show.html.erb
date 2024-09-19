@@ -2,6 +2,20 @@
 <div class="container-xl box shadow">
   <% if current_user&.id == @event.user_id %>
     <%= link_to "Edit this event", edit_event_path(@event), class:"btn btn-outline-primary" %>
+  <% else %>
+    <% if @event.start_date > Time.now && current_user %>
+      <% if current_user&.participants&.find_by(event_id: @event.id).present? %>
+        <%= link_to "Update participation status",
+                  edit_participant_path(current_user&.participants&.find_by(event_id: @event.id).id),
+                  method: :post,
+                  class:"btn btn-outline-primary" %>
+      <% else %>
+        <%= link_to "Participate in this event",
+                    new_participant_path(event_id: @event.id),
+                    method: :post,
+                    class:"btn btn-outline-primary" %>
+      <% end %>
+    <% end %>
   <% end %>  
   <%= render @event %>
 </div>

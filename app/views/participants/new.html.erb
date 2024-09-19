@@ -1,0 +1,9 @@
+<div class="container-xl form-box">
+  <% content_for :title, "New participation" %>
+
+  <h1>Your Participation Details for <%= @event.name %></h1>
+  <h4>Event happening on <%= @event.start_date %> to <%= @event.start_date %></h4>
+
+  <%= render "form", participant: @participant, event: @event %>
+
+</div>
