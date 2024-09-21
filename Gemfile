@@ -60,3 +60,9 @@ gem "devise", "~> 4.9"
 
 gem "bootstrap"
 gem "sassc-rails"
+
+gem "rack-cors", "~> 2.0"
+
+gem "devise-jwt", "~> 0.12.1"
+
+gem "jsonapi-serializer", "~> 2.2"
