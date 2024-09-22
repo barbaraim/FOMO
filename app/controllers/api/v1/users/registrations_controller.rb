@@ -1,9 +1,10 @@
 module Api
   module V1
     class Users::RegistrationsController < Devise::RegistrationsController
+      include RackSessionsFix
       protect_from_forgery with: :exception, if: Proc.new { |c| c.request.format != "application/json" }
       protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == "application/json" }
-      include RackSessionsFix
+
       respond_to :json
       private
 
@@ -18,6 +19,10 @@ module Api
             status: { message: "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}" }
           }, status: :unprocessable_entity
         end
+      end
+
+      def sign_up_params
+        params.require(:user).permit(:username, :email, :password, :password_confirmation, :name, :last_name)
       end
     end
   end
