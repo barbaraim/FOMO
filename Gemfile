@@ -66,3 +66,7 @@ gem "rack-cors", "~> 2.0"
 gem "devise-jwt", "~> 0.12.1"
 
 gem "jsonapi-serializer", "~> 2.2"
+
+gem "pry", "~> 0.14.2"
+
+gem "pry-byebug", "~> 3.10"
