@@ -70,3 +70,5 @@ gem "jsonapi-serializer", "~> 2.2"
 gem "pry", "~> 0.14.2"
 
 gem "pry-byebug", "~> 3.10"
+gem "graphql"
+gem "graphiql-rails", group: :development
