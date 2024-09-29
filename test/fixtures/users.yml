@@ -9,6 +9,7 @@ one:
   last_name: 'Doe'
   email: 'john@test.cl'
   encrypted_password: 'hola1234'
+  jti: '123456'
 # column: value
 #
 two:
@@ -16,4 +17,5 @@ two:
   last_name: 'Jonas'
   email: 'jane@test.cl'
   encrypted_password: 'hola1234'
+  jti: '654321'
 # column: value
