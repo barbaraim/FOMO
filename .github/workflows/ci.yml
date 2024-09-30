@@ -8,6 +8,7 @@ on:
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
+    
 
     steps:
       - name: Checkout code
@@ -55,6 +56,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    # environment: test
     services:
       postgres:
         image: postgres:14
@@ -62,6 +64,7 @@ jobs:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
           POSTGRES_DB: fomo_test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -92,7 +95,7 @@ jobs:
           PG_HOST: localhost
           PG_USER: postgres
           PG_PASSWORD: password
-          # REDIS_URL: redis://localhost:6379/0
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
             bundle exec rails db:setup
             bundle exec rails test
