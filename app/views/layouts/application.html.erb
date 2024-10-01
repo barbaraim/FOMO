@@ -44,7 +44,7 @@
                   </a>
                   <ul class="dropdown-menu">
                     <%= link_to 'Edit my user', edit_user_registration_path, data: { turbo: false }, class:'dropdown-item' %>
-                    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false }, class:'dropdown-item' %>
+                    <%= button_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false, turbo_method: :delete, }, class:'dropdown-item' %>
                   </ul>
                 <% else %>
                   <%= link_to 'Sign in', new_user_session_path, class:"nav-link" %>
