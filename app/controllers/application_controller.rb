@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def graphql_current_user
-    token = request.headers['Authorization'].to_s.split(' ').last
+    token = request.headers["Authorization"].to_s.split(" ").last
     return unless token
     jwt_payload = JWT.decode(token, Rails.application.credentials.devise_jwt_secret_key!)&.first
     return unless jwt_payload

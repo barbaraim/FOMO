@@ -11,10 +11,10 @@ module Mutations
     def resolve(email:, password:)
       raise GraphQL::ExecutionError, "User already signed in" if context[:current_user]
       user = User.find_by_email(email.downcase)
-      return { error: 'Username or Password is incorrect' } unless user.valid_password?(password)
+      return { error: "Username or Password is incorrect" } unless user.valid_password?(password)
       {
         token: JWT.encode({ sub: user.id }, Rails.application.credentials.devise_jwt_secret_key!),
-        error: ''
+        error: ""
       }
     end
   end
