@@ -1,6 +1,7 @@
 class Event < ApplicationRecord
   belongs_to :user
   has_many :participants, dependent: :destroy, class_name: "Participant", foreign_key: "event_id"
+  has_many :comments, as: :commentable, dependent: :destroy
 
   scope :archived, -> { where(archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
