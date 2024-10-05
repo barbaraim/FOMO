@@ -65,16 +65,15 @@
       <div class="d-flex flex-wrap">
         <% event.comments.each do |comment| %>
           <div class="d-flex flex-column align-items-center mx-2 box">
+            <p class="badge rounded-pill text-bg-secondary mx-2 px-2">
+              <%= comment.created_at %>
+            </p>
+            <p>
+              <%= "⭐️"*comment.rating %>
+            </p>
             <p>
               <%= comment.review %>
             </p>
-            <p>
-              Rating: <%= comment.rating %>
-            </p>
-            <%# <%= link_to "Reply in thread",
-                      new_comment_path(commentable_id: @event, commentable_type: "Event"),
-                      method: :post,
-                      class:"btn btn-outline-primary" %>
             <%= link_to "View Thread",
                       comment_path(comment),
                       method: :post,
