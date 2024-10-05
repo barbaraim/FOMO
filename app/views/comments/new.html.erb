@@ -1,0 +1,8 @@
+<div class="container-xl form-box">
+  <% content_for :title, "New comment" %>
+
+  <h1>New comment <%= @title %></h1>
+
+  <%= render "form", comment: @comment, commentable: @commentable %>
+
+</div>
