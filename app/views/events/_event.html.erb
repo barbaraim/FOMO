@@ -71,6 +71,14 @@
             <p>
               Rating: <%= comment.rating %>
             </p>
+            <%# <%= link_to "Reply in thread",
+                      new_comment_path(commentable_id: @event, commentable_type: "Event"),
+                      method: :post,
+                      class:"btn btn-outline-primary" %>
+            <%= link_to "View Thread",
+                      comment_path(comment),
+                      method: :post,
+                      class:"btn btn-outline-primary" %>
           </div>
         <% end %>
       </div>

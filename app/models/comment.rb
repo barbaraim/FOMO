@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
   validates :review, presence: true
   validates :commentable, presence: true
   validates :user, presence: true
+
+  scope :replies, ->(comment_id) { where(commentable_id: comment_id, commentable_type: "Comment").order(created_at: :desc) }
 end
