@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, only: %i[ new create show] #  edit update destroy
   before_action :only_comments_for_first_level, only: %i[ new create ]
   before_action :only_comments_for_first_level_show, only: %i[ show ]
+  before_action :only_comments_for_other_events, only: %i[ new create ]
 
   def new
     @comment = Comment.new
@@ -48,6 +49,13 @@ class CommentsController < ApplicationController
     return if Comments::CheckLevel.call(route_comment_params["commentable_id"], route_comment_params["commentable_type"], :new)
     flash[:alert] = "Only top level comments are allowed to be shown."
     redirect_to events_url
+  end
+
+  def only_comments_for_other_events
+    check = Comments::CheckEventComments.call(route_comment_params["commentable_id"], route_comment_params["commentable_type"], current_user)
+    return unless check
+    flash[:alert] = check
+    redirect_to event_url(route_comment_params["commentable_id"])
   end
 
   def only_comments_for_first_level_show
