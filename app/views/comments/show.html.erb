@@ -1,7 +1,10 @@
 <div class="container-xl form-box">
   <% content_for :title, "Thread for" %>
 
-  <h1>Thread in <%= @comment.commentable.name %> by <%= @comment.user.name %> <%= @comment.user.last_name %></h1>
+  <h1>Thread in <%= @comment.commentable.name %> by 
+  <%= link_to @comment.user.name,
+                      get_user_path(@comment.user),
+                      method: :get %></h1>
 
   <%= link_to "✏️ Reply in thread",
                       new_comment_path(commentable_id: @comment, commentable_type: "Comment"),

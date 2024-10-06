@@ -15,7 +15,7 @@
   <%= f.submit :Filter, class:"btn btn-outline-primary"  %>
 <% end %>
 
-<div id="events_summary" class="my-2 d-flex justify-content-evenly">
+<div id="events_summary" class="m-2 d-flex justify-content-evenly flex-wrap">
   <% @events.each do |event| %>
     <%= render partial: "events/event_summary", locals: { event: event } %>
   <% end %>

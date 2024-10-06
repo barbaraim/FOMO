@@ -42,4 +42,12 @@ class Event < ApplicationRecord
       errors.add(:archived, "can only be set to true for past events.")
     end
   end
+
+  def pretty_start_date
+    start_date.to_time.strftime("%B %e %Y at %l:%M %p")
+  end
+
+  def pretty_end_date
+    end_date.to_time.strftime("%B %e %Y at %l:%M %p")
+  end
 end
