@@ -73,3 +73,4 @@ gem "pry-byebug", "~> 3.10"
 gem "graphql"
 gem "graphiql-rails", group: :development
 gem "dry-initializer"
+gem "noticed"

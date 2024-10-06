@@ -189,6 +189,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.7-x86_64-linux)
       racc (~> 1.4)
+    noticed (2.4.3)
+      rails (>= 6.1.0)
     orm_adapter (0.5.0)
     parallel (1.26.1)
     parser (3.3.4.2)
@@ -371,6 +373,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jsonapi-serializer (~> 2.2)
+  noticed
   pg (~> 1.1)
   pry (~> 0.14.2)
   pry-byebug (~> 3.10)
