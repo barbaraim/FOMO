@@ -32,9 +32,11 @@
             <li class="nav-item">
               <%= link_to 'All Events', events_path, class:"nav-link" %>
             </li>
-            <li class="nav-item">
-              <%= link_to 'My Saved Events', my_participations_path, class:"nav-link" %>
-            </li>
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to 'My Saved Events', my_participations_path, class:"nav-link" %>
+              </li>
+            <% end %>
           </ul>
           <ul>
             <li class="nav-item dropdown">
@@ -43,6 +45,7 @@
                     Welcome, <%= current_user.name %>
                   </a>
                   <ul class="dropdown-menu">
+                    <%= link_to 'Profile', get_user_path(current_user), data: { turbo: false }, class:'dropdown-item' %>
                     <%= link_to 'Edit my user', edit_user_registration_path, data: { turbo: false }, class:'dropdown-item' %>
                     <%= button_to 'Sign out', destroy_user_session_path, method: :delete, data: { turbo: false, turbo_method: :delete, }, class:'dropdown-item' %>
                   </ul>

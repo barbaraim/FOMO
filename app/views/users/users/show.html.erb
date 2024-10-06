@@ -1,0 +1,49 @@
+<div class="container-xl form-box">
+  <h1 class="my-3">
+    <%= @user.name %> <%= @user.last_name %>
+  </h1>
+
+  <div class="box d-flex justify-content-between">
+    <% if @user.events.any? %>
+      <div>
+        <h3>
+          Events
+        </h3>
+
+        <div >
+          <% @user.events.each do |event| %>
+            <%= render partial: "events/event_summary", locals: { event: event } %>
+          <% end%>
+        </div>
+      </div>
+    <% end%>
+    <% if @user.comments.any? %>
+      <div>
+        <h3>
+          Comments
+        </h3>
+
+        <div >
+          <% @user.comments.each do |comment| %>
+            <%= render partial: "comments/comment_summary", locals: { comment: comment } %>
+          <% end%>
+        </div>
+      </div>
+    <% end%>
+    <% if @user.participants.any? %>
+      <div>
+        <h3>
+          Participation
+        </h3>
+
+        <div >
+          <% @user.participants.each do |participant| %>
+            <%= render partial: "participants/participant_summary", locals: { participant: participant } %>
+          <% end%>
+        </div>
+      </div>
+    <% end%>
+  </div>
+
+
+</div>

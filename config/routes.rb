@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :participants
   resources :comments
   get "my_participations", action: :user_index, controller: "participants"
+  get "users/:id", action: :show, controller: "users/users", as: :get_user
+
 
   devise_for :users, path: "", path_names: {
     sign_in: "login",
@@ -15,7 +17,8 @@ Rails.application.routes.draw do
   },
   controllers: {
     sessions: "users/sessions",
-    registrations: "users/registrations"
+    registrations: "users/registrations",
+    users: "users/users"
   }
 
   # post "api/v1/users/login", to: "api/v1/users/sessions#new"

@@ -1,0 +1,17 @@
+
+<div class="card my-2" style="width: 18rem;">
+  <div class="card-body container">
+    <p class="badge rounded-pill text-bg-primary mx-2 px-2 float-end ">
+      <%= participant.participant_status %>
+    </p>
+    <h3>
+      <%= participant.event.name %>
+    </h3>
+      <%= link_to "View Event",
+                  event_path(participant.event_id),
+                  method: :get,
+                  class:"btn btn-outline-primary" %>
+
+    </div>
+  </div>
+</div>

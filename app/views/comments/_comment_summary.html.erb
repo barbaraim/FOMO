@@ -1,0 +1,26 @@
+
+<div class="card  my-2" style="width: 18rem;">
+  <div class="card-body container">
+    <p class="badge rounded-pill text-bg-secondary mx-2 px-2 float-end ">
+      At <%= comment.created_at.to_time.strftime("%B %e %Y at %l:%M %p") %>
+    </p>
+    <div id="<%= dom_id comment %>" class="row">
+      <p><%= comment.review%></p>
+      <p>
+      <%= "⭐️" * comment.rating %>
+    </p>
+    <% if comment.commentable_type == 'Event'%>
+      <%= link_to "View Event",
+                  event_path(comment.commentable),
+                  method: :get,
+                  class:"btn btn-outline-primary" %>
+    <% elsif comment.commentable_type == 'Comment' %>
+      <%= link_to "View Thread",
+                  comment_path(comment.commentable),
+                  method: :get,
+                  class:"btn btn-outline-primary" %>
+    <% end %>
+
+    </div>
+  </div>
+</div>

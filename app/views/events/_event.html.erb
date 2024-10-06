@@ -18,7 +18,7 @@
     <% end %>
     <p class="badge rounded-pill text-bg-primary mx-2 px-2">
         <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z"/></svg>
-        <%= event.start_date %> - <%= event.end_date %>
+        <%= event.pretty_start_date %> - <%= event.pretty_end_date %>
       </p>
   </div>
   <div class="d-flex align-items-end justify-content-center">
@@ -27,7 +27,9 @@
   </h1>
   <p class="mx-1">
     by
-    <%= event.user.name %> <%= event.user.last_name %>
+    <%= link_to event.user.name,
+                      get_user_path(event.user),
+                      method: :get %>
   </p>
   </div>
   <p class="my-3 box">
@@ -41,9 +43,11 @@
         <div class="col">
           <h5> ✅ Attending </h5>
           <% event.participants.attending.each do |participant| %>
-            <div class="d-flex flex-column align-items-center mx-2 box">
+            <div class="d-flex flex-column align-items-center">
               <p>
-                <%= participant.user.name %> <%= participant.user.last_name %>
+                <%= link_to "#{participant.user.name} #{participant.user.last_name}",
+                      get_user_path(event.user),
+                      method: :get %>
               </p>
             </div>
           <% end %>
@@ -51,9 +55,11 @@
         <div class="col">
           <h5> 🚫 Were attending but cancelled </h5>
           <% event.participants.declined.each do |participant| %>
-            <div class="d-flex flex-column align-items-center mx-2 box">
+            <div class="d-flex flex-column align-items-center">
               <p>
-                <%= participant.user.name %> <%= participant.user.last_name %>
+                <%= link_to "#{participant.user.name} #{participant.user.last_name}",
+                      get_user_path(event.user),
+                      method: :get %>
               </p>
             </div>
           <% end %>
@@ -72,6 +78,9 @@
               <%= "⭐️"*comment.rating %>
             </p>
             <p>
+              <%= link_to comment.user.name,
+                      get_user_path(event.user),
+                      method: :get %>: 
               <%= comment.review %>
             </p>
             <%= link_to "View Thread",
