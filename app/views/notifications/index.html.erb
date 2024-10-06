@@ -5,7 +5,7 @@
   <div>
     <% if current_user.notifications.any? %>
       <div>
-        <% current_user.notifications.each do |notification| %>
+        <% current_user.notifications.newest_first.each do |notification| %>
           <div class="box m-3">
             <% if notification.read? %>
               <div class="float-end">

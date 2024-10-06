@@ -1,6 +1,7 @@
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :event
+  scope :notify_event, -> { where(notify: true) }
 
   enum :participant_status, [ :attending, :interested, :declined ]
 
@@ -31,5 +32,6 @@ class Participant < ApplicationRecord
 
   def notify_recipient
     ParticipationNotifier.with(record: event, message: "#{user.name} is attending #{event.name}").deliver(event.user)
+    ParticipationNotifier.with(record: event, message: "You are now attending #{event.name}").deliver(user) if notify? && attending?
   end
 end
