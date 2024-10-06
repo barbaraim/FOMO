@@ -1,12 +1,14 @@
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :event
+  scope :notify_event, -> { where(notify: true) }
 
   enum :participant_status, [ :attending, :interested, :declined ]
 
   validate :user_cannot_participate_twice, on: :create
   validate :cannot_participate_in_own_event, on: :create
   validate :cannot_participate_in_past_event, on: :create
+  after_create_commit :notify_recipient
 
   def user_cannot_participate_twice
     if Participant.exists?(user_id: user_id, event_id: event_id)
@@ -24,5 +26,12 @@ class Participant < ApplicationRecord
     if Event.find(event_id).end_date < Date.today
       errors.add(:event, "is in the past.")
     end
+  end
+
+  private
+
+  def notify_recipient
+    ParticipationNotifier.with(record: event, message: "#{user.name} is attending #{event.name}").deliver(event.user)
+    ParticipationNotifier.with(record: event, message: "You are now attending #{event.name}").deliver(user) if notify? && attending?
   end
 end

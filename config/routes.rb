@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :comments
   get "my_participations", action: :user_index, controller: "participants"
   get "users/:id", action: :show, controller: "users/users", as: :get_user
+  resources :notifications
+  post "mark_as_read/:id", action: :mark_as_read, controller: "notifications", as: :mark_as_read
+  post "mark_as_unread/:id", action: :mark_as_unread, controller: "notifications", as: :mark_as_unread
 
 
   devise_for :users, path: "", path_names: {

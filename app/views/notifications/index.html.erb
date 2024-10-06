@@ -1,0 +1,38 @@
+<div class="m-2">
+  <h1>
+    Notifications
+  </h1>
+  <div>
+    <% if current_user.notifications.any? %>
+      <div>
+        <% current_user.notifications.newest_first.each do |notification| %>
+          <div class="box m-3">
+            <% if notification.read? %>
+              <div class="float-end">
+                <%= button_to "Mark as unread", mark_as_unread_path(id: notification.id), method: :post, class: "btn btn-outline-primary" %>
+              </div>
+            <% else %>
+              <div class="float-end">
+                <p class="badge rounded-pill text-bg-primary mx-2 px-2">
+                  Unread
+                </p>
+                <%= button_to "Mark as read", mark_as_read_path(id: notification.id), method: :post, class: "btn btn-outline-primary" %>
+              </div>
+            <% end %>
+            <p>
+              <%= notification.params[:message] %>
+            </p>
+            <p>
+              <%= notification.created_at %>
+            </p>
+            <%= link_to "Go to Event", event_path(notification.event_id), method: :get %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p>
+        You have no notifications
+      </p>
+    <% end %>
+  </div>
+</div>
