@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :events
   has_many :participants, dependent: :destroy, class_name: "Participant", foreign_key: "user_id"
   has_many :comments, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy, class_name: "Noticed::Notification"
 end
