@@ -20,15 +20,12 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">FOMO</a>
+        <%= link_to 'FOMO', root_path, class:"nav-link" %>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse  d-flex justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <%= link_to 'Home', root_path, class:"nav-link" %>
-            </li>
             <li class="nav-item">
               <%= link_to 'All Events', events_path, class:"nav-link" %>
             </li>
@@ -38,7 +35,15 @@
               </li>
             <% end %>
           </ul>
-          <ul>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to notifications_path, class:"nav-link" do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M160-200v-80h80v-280q0-83 50-147.5T420-792v-28q0-25 17.5-42.5T480-880q25 0 42.5 17.5T540-820v28q80 20 130 84.5T720-560v280h80v80H160Zm320-300Zm0 420q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM320-280h320v-280q0-66-47-113t-113-47q-66 0-113 47t-47 113v280Z"/></svg>
+                  <%= current_user.notifications.unread.size if current_user.notifications.unread.any? %>
+                <% end %>
+              </li>
+            <% end %>
             <li class="nav-item dropdown">
                 <% if user_signed_in? %>
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
