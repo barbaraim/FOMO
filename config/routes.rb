@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
   resources :events
   resources :participants
+  resources :comments
   get "my_participations", action: :user_index, controller: "participants"
 
   devise_for :users, path: "", path_names: {

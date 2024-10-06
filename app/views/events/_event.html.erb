@@ -34,28 +34,53 @@
     <%= event.description %>
   </p>
 
-  <div class="box">
-    <h4>👥 Participants</h4>
-    <div class="d-flex flex-wrap">
-      <div class="col">
-        <h5> ✅ Attending </h5>
-        <% event.participants.attending.each do |participant| %>
+  <div class="d-flex flex-row justify-content-between">
+    <div class="box">
+      <h4>👥 Participants</h4>
+      <div class="d-flex flex-wrap">
+        <div class="col">
+          <h5> ✅ Attending </h5>
+          <% event.participants.attending.each do |participant| %>
+            <div class="d-flex flex-column align-items-center mx-2 box">
+              <p>
+                <%= participant.user.name %> <%= participant.user.last_name %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+        <div class="col">
+          <h5> 🚫 Were attending but cancelled </h5>
+          <% event.participants.declined.each do |participant| %>
+            <div class="d-flex flex-column align-items-center mx-2 box">
+              <p>
+                <%= participant.user.name %> <%= participant.user.last_name %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <h4>💬 Reviews</h4>
+      <div class="d-flex flex-wrap">
+        <% event.comments.each do |comment| %>
           <div class="d-flex flex-column align-items-center mx-2 box">
-            <p>
-              <%= participant.user.name %> <%= participant.user.last_name %>
+            <p class="badge rounded-pill text-bg-secondary mx-2 px-2">
+              <%= comment.created_at %>
             </p>
+            <p>
+              <%= "⭐️"*comment.rating %>
+            </p>
+            <p>
+              <%= comment.review %>
+            </p>
+            <%= link_to "View Thread",
+                      comment_path(comment),
+                      method: :post,
+                      class:"btn btn-outline-primary" %>
           </div>
         <% end %>
       </div>
-      <div class="col">
-        <h5> 🚫 Were attending but cancelled </h5>
-        <% event.participants.declined.each do |participant| %>
-          <div class="d-flex flex-column align-items-center mx-2 box">
-            <p>
-              <%= participant.user.name %> <%= participant.user.last_name %>
-            </p>
-          </div>
-        <% end %>
-      </div>
+    </div>
   </div>
 </div>

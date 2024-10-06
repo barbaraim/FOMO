@@ -1,0 +1,11 @@
+one:
+  review: This is a review
+  rating: 5
+  user: one
+  commentable: one (Event)
+
+two:
+  review: This is a review of a review
+  rating: 4
+  user: two
+  commentable: one (Comment)

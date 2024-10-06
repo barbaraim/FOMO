@@ -84,8 +84,9 @@ class EventsController < ApplicationController
     end
 
     def authenticate_author!
+      return if @event.user == current_user
       flash[:alert] = "You are not authorized to perform this action."
-      redirect_to events_url unless @event.user == current_user
+      redirect_to events_url
     end
 
     def filter_index_params
