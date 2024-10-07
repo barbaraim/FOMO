@@ -37,4 +37,9 @@ class EventTest < ActiveSupport::TestCase
     assert_not event.save
     assert_includes event.errors.full_messages, "Archived can only be set to true for past events."
   end
+
+  test "get right total rating" do
+    event = events(:one)
+    assert_equal 5.0, event.total_rating
+  end
 end
