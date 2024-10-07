@@ -1,6 +1,26 @@
 
 <% if user_signed_in? %>
-  <h1>Welcome back, <%= current_user.name %> <%= current_user.last_name %>!</h1>
+  <div class="m-3">
+    <h1>Welcome back, <%= current_user.name %> <%= current_user.last_name %>!</h1>
+  </div>
+  <div class="box m-3">
+    <h4>Latest created events:</h4>
+    <%= link_to 'See all events', events_path, class:"btn btn-outline-primary" %>
+      <div class="d-flex flex-direction-row">
+        <% @events.each do |event| %>
+          <%= render partial: "events/event_summary", locals: { event: event } %>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="box m-3">
+    <h4>Latest comments in events:</h4>
+      <div class="d-flex flex-direction-row">
+        <% @event_comments.each do |comment| %>
+          <%= render partial: "comments/comment_summary", locals: { comment: comment } %>
+        <% end %>
+      </div>
+  </div>
 <% else %>
   <h1>Find your crowd!</h1>
   <img src="https://images.unsplash.com/photo-1566737236500-c8ac43014a67?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
