@@ -32,6 +32,9 @@
                       method: :get %>
   </p>
   </div>
+  <% if event.comments.any? %>
+    <p> This is a <%= event.total_rating %> star event </p>
+  <% end %>
   <p class="my-3 box">
     <%= event.description %>
   </p>

@@ -50,4 +50,14 @@ class Event < ApplicationRecord
   def pretty_end_date
     end_date.to_time.strftime("%B %e %Y at %l:%M %p")
   end
+
+  def total_rating
+    comments_table = Comment.arel_table
+    arel_query = comments_table.where(comments_table[:commentable_id].eq(id)
+                  .and(comments_table[:commentable_type].eq("Event")))
+                  .project(comments_table[:rating].average)
+                  .to_sql
+    events_average_ratings = ActiveRecord::Base.connection.execute(arel_query).first
+    events_average_ratings["avg"].to_f
+  end
 end
